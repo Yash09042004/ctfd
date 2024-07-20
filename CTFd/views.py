@@ -207,6 +207,12 @@ def setup():
             # Splice in our banner
             index = f"""
 <style>
+.row {{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}}
 .glass-card {{
     height: 80%;
     background: rgba(255, 255, 255, 0.2);
