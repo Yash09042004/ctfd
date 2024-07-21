@@ -44,8 +44,9 @@ body {
   background-size: cover;
   position: relative;
   -webkit-text-stroke: 1px #4f90ab;
-  animation: shine 7s infinite linear;
+  animation: shine 20s infinite linear;
   margin-top: 5%;
+  z-index: 2;
 }
 
 .frozen-title {
@@ -81,10 +82,10 @@ h3, .category-header, .challenge-inner {
 }
 
 /* Hover effects */
-h1:hover, p:hover, .category-header:hover, .challenge-inner:hover, h3:hover {
-  color: #4f74ee; /* Matrix green on hover */
-  text-shadow: 0 0 12px #4f74ee; /* Enhanced Matrix green glow */
-}
+/* h1:hover, p:hover, .category-header:hover, .challenge-inner:hover, h3:hover { */
+  /* color: #4f74ee; Matrix green on hover */
+  /* text-shadow: 0 0 12px #4f74ee; Enhanced Matrix green glow */
+/* } */
 
 /* Additional hover effect for challenge buttons to match the Matrix theme */
 .challenge-button:hover {
@@ -108,7 +109,55 @@ h1:hover, p:hover, .category-header:hover, .challenge-inner:hover, h3:hover {
     height: 100vh;
     background-color: var(--bs-backdrop-bg)
 }
+/* Challenges Background */
 
+@keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-webkit-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-moz-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-ms-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+
+
+.stars, .twinkling{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+.stars {
+  background:#000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+  z-index:0;
+}
+
+.twinkling{
+  background:transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+  z-index:1;
+
+  -moz-animation:move-twink-back 200s linear infinite;
+  -ms-animation:move-twink-back 200s linear infinite;
+  -o-animation:move-twink-back 200s linear infinite;
+  -webkit-animation:move-twink-back 200s linear infinite;
+  animation:move-twink-back 200s linear infinite;
+}
+
+
+/* Challenges Background */
 </style>
 
 <!-- <div class="jumbotron"> -->
@@ -116,6 +165,19 @@ h1:hover, p:hover, .category-header:hover, .challenge-inner:hover, h3:hover {
     <h1 class="frozen-title">Challenges</h1>
   </div>
 <!-- </div> -->
+
+<!-- Challenges Background -->
+<!-- <div class="stars"></div>
+<div class="twinkling"></div> -->
+
+<!-- Challenges Background -->
+
+
+
+<!-- chall back2 -->
+
+
+<!-- chall back2 -->
 
 <div class="container" style="position: relative; z-index: 2;">
   <div class="row">

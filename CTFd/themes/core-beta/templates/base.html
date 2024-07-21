@@ -22,7 +22,7 @@
           'userId': {{ Session.id }},
           'userName': {{ User.name | tojson }},
           'userEmail': {{ User.email | tojson }},
-          'teamId': {{ Team.id | tojson }}, 
+          'teamId': {{ Team.id | tojson }},
           'teamName': {{ Team.name | tojson }},
           'start': {{ Configs.start | tojson }},
           'end': {{ Configs.end | tojson }},
@@ -38,30 +38,28 @@
 </head>
 
 <body>
-  {% if request.path == '/' %}
+  {% if request.path == '/' or request.path == '/users' %}
   <style>
-    /* Background image styling */
     body, html {
-      background-image: url("https://firebasestorage.googleapis.com/v0/b/final-project-cb1da.appspot.com/o/village1.png?alt=media&token=2df33fac-984c-414e-8b6d-3f54513651e4");
-      background-size: cover; /* Cover the entire page, maintaining aspect ratio */
-      background-repeat: no-repeat; /* Do not repeat the image */
-      background-position: center center; /* Center the background image */
-      height: 100%; /* Ensure at least the whole viewport is covered */
-      margin: 0; /* Remove default margin */
+      background-image: url("/themes/core-beta/static/img/village.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 100%;
+      margin: 0;
       z-index: 100;
     }
-    /* Optionally add a translucent overlay to make text more readable */
+
     .overlay {
       position: fixed;
       width: 100%;
       height: 100%;
       top: 0;
       left: 0;
-      background: rgba(0, 0, 0, 0); /* Adjust the opacity as needed */
-      z-index: 0; /* Ensure it stays below the content but above the canvas */
+      background: rgba(0, 0, 0, 0);
+      z-index: 0;
     }
 
-    /* Snowflake styling */
     .snowflake {
       position: fixed;
       top: -10px;
@@ -70,6 +68,7 @@
       opacity: 0.8;
       color: #FFF;
     }
+
 
     @keyframes fall {
       0% { top: -50px; }
@@ -81,20 +80,7 @@
       50% { transform: translateX(20px); }
     }
   </style>
-
-<style>
-  /* Full screen canvas styling */
-  #matrixCanvas {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Ensure it's behind other content */
-    top: 0;
-    left: 0;
-  }
-</style>
   {% endif %}
-
 
   {% include "components/navbar.html" %}
 
@@ -114,74 +100,27 @@
   </footer>
 
   {% include "components/notifications.html" %}
-  <canvas id="matrixCanvas"></canvas>  
 
+  {% if request.path == '/' or request.path == '/scoreboard' %}
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const canvas = document.getElementById('matrixCanvas');
-      const ctx = canvas.getContext('2d');
+    function createSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.textContent = '•';
+      snowflake.style.fontSize = Math.random() * 50 + 10 + 'px';
+      snowflake.style.left = Math.random() * window.innerWidth + 'px';
+      snowflake.style.animation = `fall ${Math.random() * 4 + 4}s linear infinite, sideWays ${Math.random() * 2 + 1}s ease-in-out infinite`;
 
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
+      document.body.appendChild(snowflake);
 
-      window.addEventListener('resize', resizeCanvas);
-      resizeCanvas();
+      setTimeout(() => {
+        snowflake.remove();
+      }, Math.random() * 4000 + 4000);
+    }
 
-      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]';
-      const fontSize = 20;
-      const columns = canvas.width / fontSize;
-      const drops = Array(Math.floor(columns)).fill(1);
-
-      function drawMatrixRain() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = '#4fabe7'; // BLUE text
-        ctx.font = `${fontSize}px monospace`;
-
-        for (let i = 0; i < drops.length; i++) {
-            const text = characters.charAt(Math.floor(Math.random() * characters.length));
-
-            // Apply glow effect only to the text
-            ctx.shadowBlur = 20; // Adjust the glow radius
-            ctx.shadowColor = '#4fabe7'; // Glow color
-
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            // Reset shadowBlur to 0 after drawing each character to prevent the whole screen from blurring
-            ctx.shadowBlur = 0;
-
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
-                drops[i] = 0;
-            }
-            drops[i]++;
-        }
-      }
-
-      // setInterval(drawMatrixRain, 60);
-
-      {% if request.path == '/' %}
-      function createSnowflake() {
-        const snowflake = document.createElement('div');
-        snowflake.classList.add('snowflake');
-        snowflake.textContent = '•';
-        snowflake.style.fontSize = Math.random() * 50 + 10 + 'px';
-        snowflake.style.left = Math.random() * window.innerWidth + 'px';
-        snowflake.style.animation = `fall ${Math.random() * 4 + 4}s linear infinite, sideWays ${Math.random() * 2 + 1}s ease-in-out infinite`;
-
-        document.body.appendChild(snowflake);
-
-        setTimeout(() => {
-          snowflake.remove();
-        }, Math.random() * 4000 + 4000);
-      }
-
-      setInterval(createSnowflake, 200);
-      {% endif %}
-    });
+    setInterval(createSnowflake, 200);
   </script>
+  {% endif %}
 
   {% block scripts %}
     {{ Assets.js("assets/js/page.js") }}

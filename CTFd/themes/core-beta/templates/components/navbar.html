@@ -31,11 +31,11 @@
         {% endfor %}
 
         {% if Configs.account_visibility != 'admins' %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('users.listing') }}">
-              {% trans %}Users{% endtrans %}
-            </a>
-          </li>
+          <!-- <li class="nav-item"> -->
+            <!-- <a class="nav-link" href="{{ url_for('users.listing') }}"> -->
+              <!-- {% trans %}Users{% endtrans %} -->
+            <!-- </a> -->
+          <!-- </li> -->
 
           {% if Configs.user_mode == 'teams' %}
             <li class="nav-item">

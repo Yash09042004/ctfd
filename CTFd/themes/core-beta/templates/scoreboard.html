@@ -3,17 +3,91 @@
 {% block content %}
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
+    @font-face {
+    font-family: "Frozen";
+    src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/Ice%20kingdom%20-%20Bold%20-%20Por%20Kustren.woff");
+  }
+  
     body, html {
         margin: 0;
         padding: 0;
         font-family: 'Orbitron', sans-serif;
         background-color: #000;
-        color: #0f0;
+        color: #fff;
         overflow: hidden;
         height: 100vh;
+        overflow-y: scroll;
     }
 
+    @keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1)
+    }
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.55)
+    }
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1)
+    }
+}
+.waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+.waveWrapperInner {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    bottom: -1px;
+    background-image: linear-gradient(to top, #1a7fdd 20%, #27273c 80%);
+}
+.bgTop {
+    z-index: 15;
+    opacity: 0.5;
+}
+.bgMiddle {
+    z-index: 10;
+    opacity: 0.75;
+}
+.bgBottom {
+    z-index: 5;
+}
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+}
+.waveTop {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveTop {
+  animation: move-wave 3s;
+   -webkit-animation: move-wave 3s;
+   -webkit-animation-delay: 1s;
+   animation-delay: 1s;
+}
+.waveMiddle {
+    background-size: 50% 120px;
+}
+.waveAnimation .waveMiddle {
+    animation: move_wave 10s linear infinite;
+}
+.waveBottom {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveBottom {
+    animation: move_wave 15s linear infinite;
+}
     .section {
         height: 100vh;
         display: flex;
@@ -69,71 +143,126 @@
         0% { transform: translateZ(0); opacity: 1; }
         100% { transform: translateZ(600px); opacity: 0; }
     }
+    /* .row{
+        overflow-y: scroll;
+    } */
 
     .custom-scoreboard-table {
         border-collapse: collapse;
         width: 100%;
-        background-color: rgba(0, 0, 0, 0.8); /* Ensures table background is dark */
-        box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
-        color: #0f0; /* Default text color set to green */
+        color: #fff; /* Default text color set to green */
         transition: all 0.3s ease-in-out;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
     }
 
     .custom-scoreboard-table th {
         text-align: left;
         padding: 12px;
-        border-bottom: 1px solid #0f0; /* Green bottom border */
-        background-color: rgba(0, 0, 0, 0.8); /* Dark background for headers */
-        color: #0f0; /* Green text color */
-        text-shadow: 0 0 5px #0f0; /* Green text shadow for visibility */
+        background-color: transparent;
+        color:#fff ;
+        font-size: 24px;
     }
 
     .custom-scoreboard-table td {
         text-align: left;
-        padding: 12px;
-        border-bottom: 1px solid #0f0; /* Green bottom border */
-        background-color: #000; /* Black background for data cells */
-        color: #0f0; /* Green text color for visibility */
+        padding: 16px;
+        background-color: transparent;
+        color: #fff; /* Green text color for visibility */
+        font-size: 24px;
     }
 
     .custom-scoreboard-table tr td a {
-    color: #0f0; /* Green text color */
+    color: #fff; /* Green text color */
     text-decoration: none;
     transition: color 0.3s ease-in-out, transform 0.3s ease, background-color 0.3s ease;
     display: inline-block; /* Allows transform to work on inline elements like 'a' */
 }
 
-.custom-scoreboard-table tr td a:hover {
-    color: #fff; /* Changes text color to white on hover */
-    text-decoration: underline; /* Adds an underline to highlight hover */
-    transform: translateY(-5px); /* Moves the link up by 5px */
-    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.6); /* Adds a green glow below */
-    background-color: rgba(0, 255, 0, 0.2); /* Slight background color change on hover */
-}
 
-.custom-scoreboard-table tr:hover {
-    background-color: rgba(0, 255, 0, 0.1); /* Changes the row's background color on hover */
-    transition: background-color 0.3s ease-in-out; /* Smooth transition for background color */
-}
 
     .badge {
-        background-color: #0f0;
+        background-color: #fff;
         color: #000;
         text-shadow: 0 0 5px #0f0;
         border-radius: 3px;
         padding: 3px 7px;
         font-size: 0.8em;
     }
-    
+    .container h1.frozen-title {
+  font-size: calc(5vw + 1rem);
+  font-family: "Frozen", serif;
+  text-align: center;
+  background-image: url("https://assets.codepen.io/209981/ice.jpg");
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: cover;
+  position: relative;
+  -webkit-text-stroke: 1px #4f90ab;
+  animation: shine 20s infinite linear;
+  margin-top: 5%;
+  z-index: 2;
+}
+.frozen-title {
+  background-color: transparent; /* Ensure no background color */
+}
+
+@keyframes shine {
+  0%, 100% {
+    background-position: left bottom;
+  }
+  50% {
+    background-position: right top;
+  }
+}
+
+  .container {
+    text-align: center;
+    position: relative;
+    z-index: 40 !important;
+  }
+  .snowflake {
+      position: fixed;
+      top: -10px;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.8;
+      color: #FFF;
+    }
+    @keyframes fall {
+      0% { top: -50px; }
+      100% { top: 100vh; }
+    }
+
+    @keyframes sideWays {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(20px); }
+    }
 
 </style>
+
 
 <div class="star-field" id="starField"></div>
 <div class="jumbotron">
     <div class="container">
-        <h1>{% trans %}Scoreboard{% endtrans %}</h1>
+        <h1 class="frozen-title">{% trans %}Scoreboard{% endtrans %}</h1>
     </div>
 </div>
+
+
+    <div class="waveWrapper waveAnimation">
+        <div class="waveWrapperInner bgTop">
+          <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+        </div>
+        <div class="waveWrapperInner bgMiddle">
+          <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+        </div>
+        <div class="waveWrapperInner bgBottom">
+          <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+        </div>
+      </div>
 
 <div class="container">
     {% include "components/errors.html" %}
@@ -189,8 +318,25 @@
     </div>
 </div>
 
-{% endblock %}
+<script>
+        function createSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.textContent = '•';
+      snowflake.style.fontSize = Math.random() * 50 + 10 + 'px';
+      snowflake.style.left = Math.random() * window.innerWidth + 'px';
+      snowflake.style.animation = `fall ${Math.random() * 4 + 4}s linear infinite, sideWays ${Math.random() * 2 + 1}s ease-in-out infinite`;
 
+      document.body.appendChild(snowflake);
+
+      setTimeout(() => {
+        snowflake.remove();
+      }, Math.random() * 4000 + 4000);
+    }
+
+    setInterval(createSnowflake, 200);
+</script>
+{% endblock %}
 {% block scripts %}
 {{ Assets.js("assets/js/scoreboard.js") }}
 <script>
@@ -253,5 +399,9 @@
         }
     `;
     document.head.appendChild(style);
+
+    
 </script>
+
+
 {% endblock %}

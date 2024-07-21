@@ -224,7 +224,7 @@ def setup():
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 20px;
     margin: 10px;
-    margin-left: 10vh;
+    margin-left: 7vh;
 }}
 </style>
 <div class="row">
