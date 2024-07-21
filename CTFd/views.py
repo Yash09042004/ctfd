@@ -222,13 +222,11 @@ def setup():
     flex: 0 1 auto;
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 20px;
-    margin: 10px;
-    margin-left: 7vh;
+    margin: 20px;
 }}
-</style>
+</style>    
 <div class="row">
-  <div class="col-md-6 offset-md-3 glass-card">
+  <div class="col-md-6 glass-card">
     <img class="w-100 mx-auto d-block" style="max-width: 500px;padding: 50px;padding-top: 14vh;" src="{default_ctf_banner_location}" />
     <h3 class="text-center">
       <p>A cool CTF platform from <a href="https://www.wcewlug.org">wlug</a></p>
