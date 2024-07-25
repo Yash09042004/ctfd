@@ -1,4 +1,19 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<head>
+  
+  <style>
+    
+    .navbar-brand, .nav-link {
+      font-size: 24px; /* Adjust the size as needed */
+      font-weight: bold; /* Makes the text bold */
+    }
+    .nav-link {
+      font-size: 18px; /* Adjust the size as needed */
+      font-weight: bold; /* Makes the text bold */
+    }
+  </style>
+</head>
+
+<nav  class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: transparent !important;">
   <div class="container">
     <a href="{{ url_for('views.static_html', route='/') }}" class="navbar-brand">
       {% if Configs.ctf_logo %}
@@ -9,7 +24,8 @@
             height="25"
         >
       {% else %}
-        {{ Configs.ctf_name }}
+        <!-- {{ Configs.ctf_name }} -->
+          <hi>Home</hi>
       {% endif %}
     </a>
 
