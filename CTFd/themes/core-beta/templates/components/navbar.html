@@ -1,7 +1,7 @@
 <head>
   
   <style>
-    
+  
     .navbar-brand, .nav-link {
       font-size: 24px; /* Adjust the size as needed */
       font-weight: bold; /* Makes the text bold */
@@ -13,8 +13,8 @@
   </style>
 </head>
 
-<nav  class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: transparent !important;">
-  <div class="container">
+<nav  class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: transparent !important; justify-content: center;">
+  <div class="container glass-card">
     <a href="{{ url_for('views.static_html', route='/') }}" class="navbar-brand">
       {% if Configs.ctf_logo %}
         <img
