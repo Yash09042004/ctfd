@@ -80,11 +80,11 @@
     <div class="container">
         {% include "components/errors.html" %}
 
-        <div id="score-graph" class="row d-flex align-items-center">
+        <!-- <div id="score-graph" class="row d-flex align-items-center">
             <div class="col-md-12 text-center">
                 <canvas id="scoreGraph"></canvas>
             </div>
-        </div>
+        </div> -->
 
         {% cache 60, CacheKeys.PUBLIC_SCOREBOARD_TABLE %}
         {% if standings %}
