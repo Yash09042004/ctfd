@@ -1,20 +1,35 @@
 <head>
   
   <style>
-  
     .navbar-brand, .nav-link {
-      font-size: 24px; /* Adjust the size as needed */
-      font-weight: bold; /* Makes the text bold */
+        font-size: 24px; /* Adjust the size as needed */
+        font-weight: bold; /* Makes the text bold */
     }
     .nav-link {
-      font-size: 18px; /* Adjust the size as needed */
-      font-weight: bold; /* Makes the text bold */
+        font-size: 18px; /* Adjust the size as needed */
+        font-weight: bold; /* Makes the text bold */
     }
-  </style>
+    .navbar {
+        background-color: transparent !important; /* Transparent background */
+        justify-content: center; /* Center the navbar content */
+        z-index: -0.99;
+    }
+    .glasscard {
+      height: 8%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    flex: 0 1 auto;
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 20px;
+    }
+</style>
 </head>
 
-<nav  class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: transparent !important; justify-content: center;">
-  <div class="container glass-card">
+<nav  class="navbar navbar-expand-md navbar-dark fixed-top glasscard" style="background-color: transparent !important; ">
+  <div class="container ">
     <a href="{{ url_for('views.static_html', route='/') }}" class="navbar-brand">
       {% if Configs.ctf_logo %}
         <img
@@ -96,57 +111,6 @@
             </li>
           {% endif %}
 
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('views.notifications') }}">
-              <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% trans %}Notifications{% endtrans %}">
-                <i class="fas fa-bell d-none d-md-inline d-lg-none"></i>
-              </span>
-              <span class="d-sm-inline d-md-none d-lg-inline">
-                  <i class="fas fa-bell pe-1"></i>
-                  <span x-data x-show="$store.unread_count > 0" x-text="$store.unread_count" class="badge rounded-pill bg-danger badge-notification"></span>
-                  {% trans %}Notifications{% endtrans %}
-              </span>
-            </a>
-          </li> -->
-
-          <!-- {% if Configs.user_mode == "teams" %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('teams.private') }}">
-                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% trans %}Team{% endtrans %}">
-                  <i class="fas fa-users d-none d-md-inline d-lg-none"></i>
-                </span>
-                <span class="d-sm-inline d-md-none d-lg-inline">
-                  <i class="fas fa-users pe-1"></i>
-                  {% trans %}Team{% endtrans %}
-                </span>
-              </a>
-            </li>
-          {% endif %} -->
-
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('users.private') }}">
-              <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% trans %}Profile{% endtrans %}">
-                <i class="fas fa-user-circle d-none d-md-inline d-lg-none"></i>
-              </span>
-              <span class="d-sm-inline d-md-none d-lg-inline">
-                <i class="fas fa-user-circle pe-1"></i>
-                {% trans %}Profile{% endtrans %}
-              </span>
-            </a>
-          </li>
-
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('views.settings') }}">
-              <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% trans %}Settings{% endtrans %}">
-                <i class="fas fa-cogs d-none d-md-inline d-lg-none"></i>
-              </span>
-              <span class="d-sm-inline d-md-none d-lg-inline">
-                <i class="fas fa-cogs pe-1"></i>
-                {% trans %}Settings{% endtrans %}
-              </span>
-            </a>
-          </li> -->
-
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('auth.logout') }}">
               <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% trans %}Logout{% endtrans %}">
@@ -160,7 +124,7 @@
             </a>
           </li>
         {% else %}
-
+<!-- 
           {% if registration_visible() %}
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('auth.register') }}">
@@ -169,11 +133,11 @@
                 </span>
                 <span class="d-sm-inline d-md-none d-lg-inline">
                   <i class="fas fa-user-plus pe-1"></i>
-                  <!-- {% trans %}Register{% endtrans %} -->
+                  {% trans %}Register{% endtrans %}
                 </span>
               </a>
             </li>
-          {% endif %}
+          {% endif %} -->
 
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('auth.login') }}">

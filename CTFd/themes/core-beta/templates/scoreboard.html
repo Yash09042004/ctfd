@@ -16,10 +16,9 @@
         color: #fff;
         height: 100%;
         overflow: hidden;
+        overflow-y: scroll;
     }
-body, html{
-    overflow: auto;
-}
+   
     @keyframes move_wave {
     0% {
         transform: translateX(0) translateZ(0) scaleY(1)
@@ -80,6 +79,16 @@ body, html{
 .waveMiddle {
     background-size: 50% 120px;
 }
+
+.scrollable-content::-webkit-scrollbar {
+        display: none; /* Hide scrollbars for WebKit browsers */
+    }
+
+    .scrollable-content {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+
 .waveAnimation .waveMiddle {
     animation: move_wave 10s linear infinite;
 }
@@ -121,7 +130,7 @@ body, html{
         max-width: 600px;
         margin-top: 20px;
         color: #8fbc8f;
-        z-index: -1;
+        z-index: 2;
     }
 
     .star-field {
@@ -208,6 +217,7 @@ body, html{
 }
 .frozen-title {
   background-color: transparent; /* Ensure no background color */
+  
 }
 
 @keyframes shine {
